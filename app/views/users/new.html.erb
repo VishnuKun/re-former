@@ -12,3 +12,16 @@ form_with model: @user, url: users_path, method:'post' do |form|
  form.submit 'Create User' 
 end 
 %>
+
+<%= form_tag(users_path) do %>
+  <%= label_tag('user[username]', 'Username')%>
+  <%= text_field_tag('user[username]')%>
+  
+  <%= label_tag('user[email]', 'Email')%>
+  <%= email_field_tag('user[email]')%>
+
+  <%= label_tag('user[password]', 'Password')%>
+  <%= password_field_tag('user[password]')%>
+
+  <%= submit_tag('Create User') %>
+<% end %>
