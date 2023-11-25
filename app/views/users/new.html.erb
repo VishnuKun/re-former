@@ -29,14 +29,25 @@ end
 %>
 
 <%= form_with model: @user, url: users_path, method: 'post' do |form| %>
-  <%= form.label :username%>
-  <%= form.text_field :username, name: 'user[username]' , value: 'Anon'%>
+ <% if @user.errors.any? %>
+   <div id="error_explanation">
+     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+     <ul>
+       <% @user.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+       <% end %>
+     </ul>
+   </div>
+ <% end %>
 
-  <%= form.label :email%>
-  <%= form.email_field :email, name: 'user[email]', placeholder: 'example@123.com' %>
+ <%= form.label :username%>
+ <%= form.text_field :username, name: 'user[username]' , value: 'Anon'%>
 
-  <%= form.label :password %>
-  <%= form.password_field :password, name: 'user[password]' %>
+ <%= form.label :email%>
+ <%= form.email_field :email, name: 'user[email]', placeholder: 'example@123.com' %>
 
-  <%= form.submit('Create User') %>
+ <%= form.label :password %>
+ <%= form.password_field :password, name: 'user[password]' %>
+
+ <%= form.submit('Create User') %>
 <% end %>
