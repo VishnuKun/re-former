@@ -11,8 +11,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      flash[:success] = "User created successfully."
       redirect_to users_path
     else
+      flash[:error] = "There was a problem creating the user."
       render 'new', status: :unprocessable_entity
     end
   end
